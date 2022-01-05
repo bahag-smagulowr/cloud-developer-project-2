@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 require('dotenv').config();
@@ -29,8 +29,8 @@ require('dotenv').config();
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
   /**************************************************************************** */
-  app.get("/filteredimage",  async (req, res) => {
-    const image_url = req.query.image_url;
+  app.get("/filteredimage",  async (req: Request, res: Response) => {
+    let image_url: string = req.query.image_url;
 
     // 1. validate the image_url query
     if(!image_url) {
